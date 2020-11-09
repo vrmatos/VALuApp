@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="blue">#80F3FF</color>
+    <color name="cyan">#80F3FF</color>
     <color name="purple">#CC80FF</color>
     <color name="orange">#FF8C80</color>
     <color name="green">#B3FF80</color>
+    <color name="black">#000000</color>
+    <color name="snow">#FFFAFA</color>
+    <color name="blue">#0000FF</color>
 </resources>
