@@ -24,8 +24,8 @@
     </style>
 
     <style name="TableText">
-        <item name="android:padding">7dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

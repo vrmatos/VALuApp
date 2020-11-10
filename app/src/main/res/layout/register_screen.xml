@@ -1,7 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/PAWPINS"
+        android:contentDescription="@string/logo">
+    </ImageView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo"
+        android:id="@+id/sitter_info"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/purple_border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_first_name_line"
+            android:weightSum="5">
+            <TextView
+                android:text="First Name:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_first_name"
+                android:hint="John"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_last_name_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Last Name:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_last_name"
+                android:hint="Smith"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_email_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Email:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_email"
+                android:hint="jsmith@domain.com"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_password_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Password:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_password"
+                android:hint="ABCabc123!@#$%^*"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/sitter_info"
+        android:id="@+id/sitter_address"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/cyan_border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_address_line1_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Address Line 1:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_address_line1"
+                android:hint="123 Street St"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_address_line2_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Address Line 2:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_address_line2"
+                android:hint="Apartment, suite, unit, etc"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_city_line"
+            android:weightSum="5">
+            <TextView
+                android:text="City:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_city"
+                android:hint="AnyTown"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_state_line"
+            android:weightSum="5">
+            <TextView
+                android:text="State:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_state"
+                android:hint="MD"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sitter_zip_code_line"
+            android:weightSum="5">
+            <TextView
+                android:text="Zip Code:"
+                style="@style/TableText"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/sitter_zip_code"
+                android:hint="01234"
+                style="@style/TableText"
+                android:layout_weight="4"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_button"
+        android:layout_below="@id/sitter_address"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/register_me"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corners">
+    </Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:id="@+id/sign_up_button"
+        android:layout_below="@id/login_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/have_acct"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        >
+    </Button>
+
+
+</RelativeLayout>
