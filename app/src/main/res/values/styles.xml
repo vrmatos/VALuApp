@@ -30,11 +30,21 @@
     </style>
 
     <style name="AcctButton">
-        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_width">270dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textSize">20sp</item>
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/rounded_corners</item>
     </style>
+
+    <style name="BrowseText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

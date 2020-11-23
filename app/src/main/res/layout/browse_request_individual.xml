@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/cyan_border"
+    android:id="@+id/browse_request_indiv">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/pet_pic_small"
+        android:src="@drawable/cat"
+        android:layout_margin="10dp"
+        android:contentDescription="pet_picture">
+    </ImageView>
+
+    <TextView
+        style="@style/BrowseText"
+        android:text="Distance: 15 miles"
+        android:id="@+id/distance"
+        android:layout_toRightOf="@id/pet_pic_small"
+        android:layout_alignTop="@id/pet_pic_small"/>
+
+    <TextView
+        style="@style/BrowseText"
+        android:text="Pet Type: Cat"
+        android:id="@+id/pet_type_small"
+        android:layout_below="@id/distance"
+        android:layout_toRightOf="@id/pet_pic_small"/>
+
+    <TextView
+        style="@style/BrowseText"
+        android:text="Pet Breed: Short Hair"
+        android:id="@+id/pet_breed_small"
+        android:layout_below="@id/pet_type_small"
+        android:layout_toRightOf="@id/pet_pic_small"/>
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="View Request"
+        android:layout_below="@id/pet_breed_small"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:background="@color/purple"/>
+
+</RelativeLayout>

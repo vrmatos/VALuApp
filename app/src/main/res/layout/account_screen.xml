@@ -70,12 +70,19 @@
         android:id="@+id/visualize_button"
         android:layout_below="@id/points_line"
         android:layout_marginTop="30dp"
-        android:text="View Requests" />
+        android:text="View Booked Requests" />
+
+    <Button
+        style="@style/AcctButton"
+        android:id="@+id/browse_button"
+        android:layout_below="@id/visualize_button"
+        android:layout_marginTop="30dp"
+        android:text="Browse Requests" />
 
     <Button
         style="@style/AcctButton"
         android:id="@+id/update_button"
-        android:layout_below="@id/visualize_button"
+        android:layout_below="@id/browse_button"
         android:layout_marginTop="30dp"
         android:text="Update Account" />
 
@@ -85,5 +92,7 @@
         android:layout_below="@id/update_button"
         android:layout_marginTop="30dp"
         android:text="Delete Account" />
+
+
 
 </RelativeLayout>
