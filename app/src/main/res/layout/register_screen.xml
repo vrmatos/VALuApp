@@ -215,7 +215,8 @@
             android:text="@string/register_me"
             android:textSize="20sp"
             android:padding="10dp"
-            android:background="@drawable/rounded_corners">
+            android:background="@drawable/rounded_corners"
+            android:onClick="register">
         </Button>
 
         <Button
@@ -230,6 +231,7 @@
             android:textAllCaps="false"
             android:layout_marginTop="5dp"
             android:padding="10dp"
+            android:onClick="goLogin"
             >
         </Button>
 

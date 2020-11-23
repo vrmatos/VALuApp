@@ -151,7 +151,8 @@
             android:text="Book Request"
             android:textSize="20sp"
             android:padding="10dp"
-            android:background="@drawable/rounded_corners">
+            android:background="@drawable/rounded_corners"
+            android:onClick="bookRequest">
         </Button>
     </RelativeLayout>
 

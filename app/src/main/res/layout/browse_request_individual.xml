@@ -45,6 +45,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:padding="5dp"
-        android:background="@color/purple"/>
+        android:background="@color/purple"
+        android:onClick="viewRequest"/>
 
 </RelativeLayout>
