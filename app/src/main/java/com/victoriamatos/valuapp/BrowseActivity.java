@@ -25,32 +25,12 @@ public class BrowseActivity extends AppCompatActivity {
         //get requests
 
         tth.postThreadTask(ThreadTaskHandler.URL_POST_BROWSE_REQUEST, "latitude=" + LoginActivity.user.latitude + "&longitude=" + LoginActivity.user.longitude);
-        String[] output = tth.getThreadOutput();
-        String[] info;
-        LinearLayout browse = findViewById(R.id.browse_results2);
-        LayoutInflater inflater = getLayoutInflater();
-        View individual;
-        for(int i=0; i < output.length; i++){
-            info = output[i].split("\\|");
-            //id (of request), type (of pet), breed (of pet), photo (of pet), distance, [startDate], [endDate]
-            individual = inflater.inflate(R.layout.browse_request_individual, browse, false);
-            TextView tv1 = individual.findViewById(R.id.request_id);
-            tv1.setText(info[0]);
-            TextView tv2 = individual.findViewById(R.id.pet_type_small);
-            tv2.setText(info[1]);
-            TextView tv3 = individual.findViewById(R.id.pet_breed_small);
-            tv3.setText(info[2]);
-
-            //info[3] will have whatever we have for image
-
-            TextView tv5 = individual.findViewById(R.id.distance);
-            tv5.setText(info[4]);
-            TextView tv6 = individual.findViewById(R.id.start_date);
-            tv6.setText(info[5]);
-            TextView tv7 = individual.findViewById(R.id.end_date);
-            tv7.setText(info[6]);
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        populateBrowse();
 
         /*
         LinearLayout browse = findViewById(R.id.browse_results2);
@@ -104,6 +84,36 @@ public class BrowseActivity extends AppCompatActivity {
         Log.w("BrowseAct","Inside searchBy");
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
+    }
+
+    public void populateBrowse(){
+        String[] output = tth.getThreadOutput();
+        String[] info;
+        LinearLayout browse = findViewById(R.id.browse_results2);
+        LayoutInflater inflater = getLayoutInflater();
+        View individual;
+
+        for(int i=0; i < 2; i++){
+            info = output[i].split("\\|");
+            //id (of request), type (of pet), breed (of pet), photo (of pet), distance, [startDate], [endDate]
+            individual = inflater.inflate(R.layout.browse_request_individual, browse, false);
+            TextView tv1 = individual.findViewById(R.id.request_id);
+            tv1.setText(info[0]);
+            TextView tv2 = individual.findViewById(R.id.pet_type_small);
+            tv2.setText(info[1]);
+            TextView tv3 = individual.findViewById(R.id.pet_breed_small);
+            tv3.setText(info[2]);
+
+            //info[3] will have whatever we have for image
+
+            TextView tv5 = individual.findViewById(R.id.distance);
+            tv5.setText(info[4]);
+            TextView tv6 = individual.findViewById(R.id.start_date);
+            tv6.setText(info[5]);
+            TextView tv7 = individual.findViewById(R.id.end_date);
+            tv7.setText(info[6]);
+
+        }
     }
 
 }

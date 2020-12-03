@@ -46,12 +46,16 @@ public class RegisterActivity extends AppCompatActivity {
             EditText ed10 = findViewById(R.id.sitter_zip_code);
             LoginActivity.user.setZip(ed10.getText().toString());
 
+            Log.w("RA",LoginActivity.user.toThreadTaskString());
+
             //push to database
             tth.postThreadTask(ThreadTaskHandler.URL_POST_REGISTER, LoginActivity.user.toThreadTaskString());
             String[] serverOutput = tth.getThreadOutput();
+            if(serverOutput != null)
+                Log.w("RA", serverOutput[0]);
 
             //check if email exists elsewhere
-            if(serverOutput[0].equals("")){
+            if(serverOutput != null && serverOutput[0].equals("")){
                 Toast toast = Toast.makeText(getApplicationContext(),"Account already exists!", Toast.LENGTH_SHORT);
                 toast.show();
             }else{

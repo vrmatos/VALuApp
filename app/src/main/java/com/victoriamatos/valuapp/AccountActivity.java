@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,8 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_screen);
+        TextView tv = findViewById(R.id.welcome_message);
+        tv.setText("Welcome Back, " + LoginActivity.user.firstName + "!");
     }
 
     // have a back to account button or swipe back w/gesture; need a label

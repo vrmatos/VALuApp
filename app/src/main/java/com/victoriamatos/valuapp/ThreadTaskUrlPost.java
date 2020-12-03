@@ -23,7 +23,7 @@ public class ThreadTaskUrlPost extends Thread {
 
     public void run(){
         //update View
-        Log.w("MA", "Inside run");
+        Log.w("TTUP", "Inside run");
 
         try {
             //create a URL (a class)
@@ -52,9 +52,10 @@ public class ThreadTaskUrlPost extends Thread {
             while ( (line = br.readLine()) != null)
                 s += line;
             //activity.updateView(s);
+            Log.w("TTUP", "s= " + s);
             tth.setThreadOutput(s);
         } catch (Exception e){
-            Log.w("TTU", "exception: " + e.getMessage());
+            Log.w("TTUP", "exception: " + e.getMessage());
         }
     }
 

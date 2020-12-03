@@ -3,11 +3,10 @@ package com.victoriamatos.valuapp;
 import android.util.Log;
 
 public class ThreadTaskHandler {
-    public static final String URL_POST_IN_SITTER = "http://valu.cs.loyola.edu/insertSitter.php";
     public static final String URL_POST_LOGIN = "";
-    public static final String URL_POST_REGISTER = "";
+    public static final String URL_POST_REGISTER = "http://valu.cs.loyola.edu/insertSitter.php";
+    public static final String URL_POST_BROWSE_REQUEST = "http://valu.cs.loyola.edu/browseRequests.php";
     public static final String URL_GET_SELECT_PET = "http://valu.cs.loyola.edu/selectPet.php";
-    public static final String URL_POST_BROWSE_REQUEST = "";
 
     private String[] threadOutput;
 
@@ -32,8 +31,10 @@ public class ThreadTaskHandler {
 
     public String[] processOutput(String str){
         String[] split;
-        if(str.contains("\n"))
-            split = str.split("\n");
+        if(str == null)
+            return null;
+        if(str.contains("~"))
+            split = str.split("~");
         else if(str.contains("|"))
             split = str.split("\\|");
         else{
