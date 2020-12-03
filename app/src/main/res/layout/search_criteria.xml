@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SEARCH BY..."
+        android:textSize="30sp"
+        android:id="@+id/heading"
+        android:background="@color/cyan"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/search_criteria"
+        android:layout_below="@id/heading"
+        android:layout_margin="20dp"
+        android:background="@drawable/purple_border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_distance_line"
+            android:weightSum="4">
+            <TextView
+                android:text="Distance:"
+                style="@style/TableText" />
+            <EditText
+                android:id="@+id/search_distance"
+                style="@style/TableText"
+                android:layout_width="200dp"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_pet_type_line">
+            <TextView
+                android:text="Pet Type:"
+                style="@style/TableText"/>
+            <EditText
+                android:id="@+id/search_pet_type"
+                style="@style/TableText"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_pet_breed_line">
+            <TextView
+                android:text="Pet Breed:"
+                style="@style/TableText"/>
+
+            <EditText
+                android:id="@+id/search_pet_breed"
+                style="@style/TableText"/>
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE SEARCH CRITERIA"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_criteria"
+        android:background="@drawable/rounded_corners"
+        android:padding="10dp"
+        />
+
+
+</RelativeLayout>

@@ -25,9 +25,50 @@
             android:layout_alignStart="@id/pet_pic"
             android:layout_alignEnd="@id/pet_pic"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/pet_profile"
             android:layout_below="@id/pet_pic"
+            android:id="@+id/date_info"
             android:layout_marginTop="10dp"
+            android:background="@drawable/cyan_border">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_date_line">
+                <TextView
+                    android:text="Start Date: "
+                    style="@style/TableText" />
+                <TextView
+                    android:id="@+id/start_date"
+                    android:text="Dec 13, 2020"
+                    style="@style/TableText"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_date_line">
+                <TextView
+                    android:text="End Date: "
+                    style="@style/TableText"/>
+
+                <TextView
+                    android:id="@+id/end_date"
+                    style="@style/TableText"
+                    android:layout_height="match_parent"
+                    android:text="12/20/2020" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/pet_pic"
+            android:layout_alignRight="@id/pet_pic"
+            android:layout_alignStart="@id/pet_pic"
+            android:layout_alignEnd="@id/pet_pic"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/pet_profile"
+            android:layout_below="@id/date_info"
+            android:layout_marginTop="20dp"
             android:background="@drawable/purple_border">
 
             <TableRow
@@ -151,6 +192,7 @@
             android:text="Rate Owner/Pet"
             android:textSize="20sp"
             android:padding="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_corners"
             android:onClick="rate">
         </Button>

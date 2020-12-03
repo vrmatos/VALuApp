@@ -24,7 +24,7 @@
         <include
             layout="@layout/browse_request_individual"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
             android:layout_below="@+id/requests_label"
             android:id="@+id/result1" />
@@ -32,7 +32,7 @@
         <include
             layout="@layout/browse_request_individual"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
             android:layout_below="@+id/result1"
             android:id="@+id/result2" />
@@ -40,7 +40,7 @@
         <include
             layout="@layout/browse_request_individual"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
             android:layout_below="@+id/result2"
             android:id="@+id/result3" />
@@ -48,7 +48,7 @@
         <include
             layout="@layout/browse_request_individual"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
             android:layout_below="@+id/result3"
             android:id="@+id/result4"/>
@@ -56,7 +56,7 @@
         <include
             layout="@layout/browse_request_individual"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
             android:layout_below="@+id/result4"
             android:id="@+id/result5" />
