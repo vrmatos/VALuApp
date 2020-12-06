@@ -18,6 +18,15 @@ public class User {
     public User(String newEmail, String pass){
         email = newEmail;
         encrypt(pass);
+        firstName = "User";
+        lastName = "";
+        streetAddress = "";
+        city = "";
+        state = "";
+        zip = "";
+        latitude = 0.0f;
+        longitude = 0.0f;
+        points = 0;
     }
 
     public User(String first, String last, String newEmail, String pass, String street, String newCity, String newState, String newZip){

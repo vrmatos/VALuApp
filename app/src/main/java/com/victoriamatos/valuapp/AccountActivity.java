@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AccountActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +21,12 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.account_screen);
         tth = new ThreadTaskHandler();
         TextView tv = findViewById(R.id.welcome_message);
-        tv.setText("Welcome, " + LoginActivity.user.firstName + "!");
+        tv.setText("Welcome " + user.firstName + "!");
         updatePoints();
-
     }
+
     public void updatePoints(){
-        int user_pts = LoginActivity.user.points;
+        int user_pts = user.points;
         TextView tv = findViewById(R.id.total_points);
         tv.setText("Total Points: " + user_pts);
         TextView tv1 = findViewById(R.id.points_to);
@@ -50,10 +51,8 @@ public class AccountActivity extends AppCompatActivity {
 
     public void updateAcct(View v){
         Log.w("Acct","Inside updateAcct");
-        /*
-        start new activity? or manage in activity?
-        Intent intent = new Intent(this, AccountActivity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, UpdateActivity.class);
+        startActivity(intent);
     }
 
     public void deleteAcct(View v){
@@ -67,7 +66,7 @@ public class AccountActivity extends AppCompatActivity {
     public void showDeleteAcctDialog( ) {
         // build an alert box (and show it)
         AlertDialog.Builder alert = new AlertDialog.Builder( this );
-        alert.setTitle("Delete Account: " + LoginActivity.user.email);
+        alert.setTitle("Delete Account: " + user.email);
         alert.setMessage( "Are you sure?" );
 
         PlayDialog playAgain = new PlayDialog();
@@ -75,6 +74,7 @@ public class AccountActivity extends AppCompatActivity {
         // set up event handling
         alert.setPositiveButton( "YES", playAgain );
         alert.setNegativeButton( "NO", playAgain );
+
         alert.show();
     }
 
@@ -91,7 +91,8 @@ public class AccountActivity extends AppCompatActivity {
             Log.w("AcctAct", "Inside PlayDialog, onClick");
             if( which == Dialog.BUTTON_POSITIVE ) { // positive button clicked
                 //do account deleting
-                //tth.postThreadTask(ThreadTaskHandler.URL_POST_DELETE, "email=" + LoginActivity.user.email);
+                tth.postThreadTask(ThreadTaskHandler.URL_POST_DELETE, "email=" + user.email);
+                user = new User();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
@@ -99,6 +100,11 @@ public class AccountActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         }
+    }
+
+    public void logout(View v){
+        user = new User();
+        finish();
     }
 
 }

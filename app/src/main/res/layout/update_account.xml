@@ -6,17 +6,18 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_heading"
+            android:text="UPDATE ACCOUNT INFORMATION"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:gravity="center"
+            android:background="@color/green"
+            />
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/logo"
-            android:contentDescription="@string/logo">
-        </ImageView>
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,23 +25,22 @@
             android:layout_marginRight="20dp"
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/logo"
             android:id="@+id/sitter_info"
+            android:layout_below="@+id/update_heading"
             android:layout_marginTop="15dp"
             android:background="@drawable/purple_border">
 
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_first_name_line"
+                android:id="@+id/update_first_name_line"
                 android:weightSum="5">
                 <TextView
                     android:text="First Name:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_first_name"
-                    android:hint="John"
+                    android:id="@+id/update_first_name"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -48,15 +48,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_last_name_line"
+                android:id="@+id/update_last_name_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Last Name:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_last_name"
-                    android:hint="Smith"
+                    android:id="@+id/update_last_name"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -64,15 +63,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_email_line"
+                android:id="@+id/update_email_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Email:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_email"
-                    android:hint="jsmith@domain.com"
+                    android:id="@+id/update_email"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -80,15 +78,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_password_line"
+                android:id="@+id/update_password_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Password:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_password"
-                    android:hint="ABCabc123!@#$%^*"
+                    android:id="@+id/update_password"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -96,15 +93,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/verify_sitter_password_line"
+                android:id="@+id/update_verify_password_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Verify Password:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/verify_sitter_password"
-                    android:hint="ABCabc123!@#$%^*"
+                    android:id="@+id/update_verify_password"
                     style="@style/TableText"
                     android:layout_weight="4"
                     android:inputType="textPassword"/>
@@ -127,15 +123,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_address_line1_line"
+                android:id="@+id/update_address_line1_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Address Line 1:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_address_line1"
-                    android:hint="123 Street St"
+                    android:id="@+id/update_address_line1"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -143,15 +138,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_address_line2_line"
+                android:id="@+id/update_address_line2_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Address Line 2:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_address_line2"
-                    android:hint="Apartment, suite, unit, etc"
+                    android:id="@+id/update_address_line2"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -159,15 +153,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_city_line"
+                android:id="@+id/update_city_line"
                 android:weightSum="5">
                 <TextView
                     android:text="City:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_city"
-                    android:hint="AnyTown"
+                    android:id="@+id/update_city"
                     style="@style/TableText"
                     android:layout_weight="4"/>
             </TableRow>
@@ -175,15 +168,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_state_line"
+                android:id="@+id/update_state_line"
                 android:weightSum="5">
                 <TextView
                     android:text="State:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_state"
-                    android:hint="MD"
+                    android:id="@+id/update_state"
                     style="@style/TableText"
                     android:layout_weight="4"
                     android:maxLength="2"/>
@@ -192,15 +184,14 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sitter_zip_code_line"
+                android:id="@+id/update_zip_code_line"
                 android:weightSum="5">
                 <TextView
                     android:text="Zip Code:"
                     style="@style/TableText"
                     android:layout_weight="1"/>
                 <EditText
-                    android:id="@+id/sitter_zip_code"
-                    android:hint="01234"
+                    android:id="@+id/update_zip_code"
                     style="@style/TableText"
                     android:layout_weight="4"
                     android:maxLength="5"/>
@@ -215,29 +206,12 @@
             android:layout_below="@id/sitter_address"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:text="@string/register_me"
+            android:text="@string/update_me"
             android:textSize="20sp"
             android:padding="10dp"
             android:background="@drawable/rounded_corners"
-            android:onClick="register">
+            android:onClick="updateMe">
         </Button>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:id="@+id/sign_up_button"
-            android:layout_below="@id/login_button"
-            android:layout_centerHorizontal="true"
-            android:text="@string/have_acct"
-            android:textColor="@color/blue"
-            android:textAllCaps="false"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:onClick="goLogin"
-            >
-        </Button>
-
 
     </RelativeLayout>
 </ScrollView>

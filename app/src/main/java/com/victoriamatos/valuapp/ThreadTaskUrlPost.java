@@ -47,7 +47,7 @@ public class ThreadTaskUrlPost extends Thread {
             while ( (line = br.readLine()) != null)
                 s += line;
             //activity.updateView(s);
-            Log.w("TTUP", "s= " + s);
+            Log.w("TTUP", "s = " + s);
             tth.setThreadOutput(s);
         } catch (Exception e){
             Log.w("TTUP", "exception: " + e.getMessage());

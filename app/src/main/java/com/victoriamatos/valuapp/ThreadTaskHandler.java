@@ -3,11 +3,13 @@ package com.victoriamatos.valuapp;
 import android.util.Log;
 
 public class ThreadTaskHandler {
-    public static final String URL_POST_LOGIN = "";
-    public static final String URL_POST_REGISTER = "http://valu.cs.loyola.edu/insertSitter.php";
+    public static final String URL_POST_LOGIN = "http://valu.cs.loyola.edu/appLogin.php";
+    public static final String URL_POST_REGISTER = "http://valu.cs.loyola.edu/appSignup.php";
     public static final String URL_POST_BROWSE_REQUEST = "http://valu.cs.loyola.edu/browseRequests.php";
-    public static final String URL_GET_SELECT_PET = "http://valu.cs.loyola.edu/selectPet.php";
-    public static final String URL_POST_DELETE = "";
+    public static final String URL_POST_VIEW_REQUEST = "http://valu.cs.loyola.edu/viewRequest.php";
+    public static final String URL_POST_UPDATE_ACCT = "http://valu.cs.loyola.edu/updateAccount.php";
+    public static final String URL_POST_UPDATE_ACCT2 = "http://valu.cs.loyola.edu/updateAccount2.php";
+    public static final String URL_POST_DELETE = "http://valu.cs.loyola.edu/deleteAccount.php";
 
     private String[] threadOutput;
 
@@ -30,6 +32,7 @@ public class ThreadTaskHandler {
     }
 
     public String[] processOutput(String str){
+        Log.w("TTH", str);
         String[] split;
         if(str == null)
             return null;

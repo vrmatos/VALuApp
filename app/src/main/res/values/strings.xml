@@ -8,5 +8,6 @@
     <string name="logo">logo</string>
     <string name="register_me">Register Me!</string>
     <string name="have_acct">Already have an account? Login!</string>
+    <string name="update_me">UPDATE ME!</string>
 
 </resources>

@@ -7,12 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    public static User user;
     private ThreadTaskHandler tth;
 
     @Override
@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
         tth = new ThreadTaskHandler();
-        user = new User();
+        AccountActivity.user = new User();
     }
 
     //login, go to the account screen
@@ -32,12 +32,13 @@ public class LoginActivity extends AppCompatActivity {
         String email = ed1.getText().toString();
         EditText ed2 = findViewById(R.id.password);
         String password = ed2.getText().toString();
-        //user = new User(email,password);
-        //getUserInfo(email, user.getEncryptedPassword()); //uncomment when php done
-
-        //go to account screen
-        Intent intent = new Intent(this, AccountActivity.class);
-        startActivity(intent);
+        AccountActivity.user = new User(email,password);
+        int works = getUserInfo(email, AccountActivity.user.getEncryptedPassword());
+        if(works == 1){
+            //go to account screen
+            Intent intent = new Intent(this, AccountActivity.class);
+            startActivity(intent);
+        }
     }
 
     //go register, instead of login
@@ -47,16 +48,34 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static User getUser(){ return user;}
-
-    public void getUserInfo(String email, String password){
+    public int getUserInfo(String email, String password){
         tth.postThreadTask(ThreadTaskHandler.URL_POST_LOGIN, "email=" + email + "&password=" + password);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         String[] output = tth.getThreadOutput(); //firstName, lastName, latitude, longitude, points
-        user.setFirstName(output[0]);
-        user.setLastName(output[1]);
-        user.setLatitude(Float.parseFloat(output[2]));
-        user.setLongitude(Float.parseFloat(output[3]));
-        user.setPoints(Integer.parseInt(output[4]));
+        if(output.length != 5) {
+            Toast toast;
+            if(output[0].equals("email"))
+                toast = Toast.makeText(getApplicationContext(), "Email doesn't have account. Sign up!", Toast.LENGTH_SHORT);
+            else if(output[0].equals("password"))
+                toast = Toast.makeText(getApplicationContext(), "Incorrect Password", Toast.LENGTH_SHORT);
+            else
+                toast = Toast.makeText(getApplicationContext(), "Something went wrong",Toast.LENGTH_SHORT);
+            toast.show();
+            return 0;
+        }
+        else{
+            AccountActivity.user.setFirstName(output[0]);
+            AccountActivity.user.setLastName(output[1]);
+            AccountActivity.user.setLatitude(Float.parseFloat(output[2]));
+            AccountActivity.user.setLongitude(Float.parseFloat(output[3]));
+            AccountActivity.user.setPoints(Integer.parseInt(output[4]));
+            return 1;
+        }
     }
 
 }

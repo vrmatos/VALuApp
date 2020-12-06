@@ -8,61 +8,83 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/welcome_message"
-        android:text="Welcome back, User!"
+        android:text="Welcome User!"
         android:textSize="30dp"
+        android:textColor="@color/black"
         android:gravity="center_horizontal"
         android:padding="10dp"
         android:background="@color/cyan"
         android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:id="@+id/points_to"
-        android:layout_below="@id/welcome_message"
-        android:layout_marginLeft="20dp"
-        android:text="2/25"
-        android:textSize="60sp"/>
+        android:background="@drawable/logout"
+        android:layout_alignTop="@id/welcome_message"
+        android:layout_alignBottom="@id/welcome_message"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:onClick="logout"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/points_to_note"
-        android:layout_below="@id/points_to"
-        android:layout_alignLeft="@id/points_to"
-        android:layout_alignRight="@id/points_to"
-        android:text="Points to Gift Card"
-        android:textSize="15sp"/>
+        android:gravity="center"
+        android:layout_below="@+id/welcome_message"
+        android:id="@+id/points_layout">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/total_points"
-        android:layout_below="@id/welcome_message"
-        android:layout_toRightOf="@id/points_to"
-        android:layout_toEndOf="@id/points_to"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:text="Total Points: 27"
-        android:textSize="27dp" />
+        <TextView
+            android:id="@+id/points_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="2/25"
+            android:textColor="@color/black"
+            android:textSize="60sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/total_gift_cards"
-        android:layout_below="@id/total_points"
-        android:layout_toRightOf="@id/points_to"
-        android:layout_toEndOf="@id/points_to"
-        android:layout_marginLeft="25dp"
-        android:text="Gift Cards: 1"
-        android:textSize="27dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/points_to_note"
+            android:layout_below="@id/points_to"
+            android:layout_alignLeft="@id/points_to"
+            android:layout_alignRight="@id/points_to"
+            android:gravity="center"
+            android:text="Points to Gift Card"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/total_points"
+            android:layout_toRightOf="@id/points_to"
+            android:layout_toEndOf="@id/points_to"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:text="Total Points: 27"
+            android:textSize="30dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/total_gift_cards"
+            android:layout_below="@id/total_points"
+            android:layout_toRightOf="@id/points_to"
+            android:layout_toEndOf="@id/points_to"
+            android:layout_marginLeft="25dp"
+            android:text="Gift Cards: 1"
+            android:textSize="30dp"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:id="@+id/points_line"
         android:background="@color/purple"
-        android:layout_below="@id/points_to_note"
+        android:layout_below="@id/points_layout"
         android:layout_marginTop="10dp"/>
 
     <Button
@@ -96,7 +118,6 @@
         android:layout_marginTop="30dp"
         android:text="Delete Account"
         android:onClick="deleteAcct"/>
-
 
 
 </RelativeLayout>

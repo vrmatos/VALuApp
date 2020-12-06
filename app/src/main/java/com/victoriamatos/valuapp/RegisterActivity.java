@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,34 +30,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(ed4.getText().toString().equals(ed5.getText().toString())){
             //get information
-            LoginActivity.user.setPassword(ed4.getText().toString());
+            AccountActivity.user.setPassword(ed4.getText().toString());
             EditText ed1 = findViewById(R.id.sitter_first_name);
-            LoginActivity.user.setFirstName(ed1.getText().toString());
+            AccountActivity.user.setFirstName(ed1.getText().toString());
             EditText ed2 = findViewById(R.id.sitter_last_name);
-            LoginActivity.user.setLastName(ed2.getText().toString());
+            AccountActivity.user.setLastName(ed2.getText().toString());
             EditText ed3 = findViewById(R.id.sitter_email);
-            LoginActivity.user.setEmail(ed3.getText().toString());
+            AccountActivity.user.setEmail(ed3.getText().toString());
             EditText ed6 = findViewById(R.id.sitter_address_line1);
             EditText ed7 = findViewById(R.id.sitter_address_line2);
-            LoginActivity.user.setStreetAddress(ed6.getText().toString() + " " + ed7.getText().toString());
+            if(ed7.getText().toString().equals(""))
+                AccountActivity.user.setStreetAddress(ed6.getText().toString());
+            else
+                AccountActivity.user.setStreetAddress(ed6.getText().toString() + "," + ed7.getText().toString());
             EditText ed8 = findViewById(R.id.sitter_city);
-            LoginActivity.user.setCity(ed8.getText().toString());
+            AccountActivity.user.setCity(ed8.getText().toString());
             EditText ed9 = findViewById(R.id.sitter_state);
-            LoginActivity.user.setState(ed9.getText().toString());
+            AccountActivity.user.setState(ed9.getText().toString());
             EditText ed10 = findViewById(R.id.sitter_zip_code);
-            LoginActivity.user.setZip(ed10.getText().toString());
+            AccountActivity.user.setZip(ed10.getText().toString());
 
-            Log.w("RA",LoginActivity.user.toThreadTaskString());
+            Log.w("RA",AccountActivity.user.toThreadTaskString());
 
             //push to database
-            tth.postThreadTask(ThreadTaskHandler.URL_POST_REGISTER, LoginActivity.user.toThreadTaskString());
+            tth.postThreadTask(ThreadTaskHandler.URL_POST_REGISTER, AccountActivity.user.toThreadTaskString());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String[] serverOutput = tth.getThreadOutput();
-            if(serverOutput != null)
-                Log.w("RA", serverOutput[0]);
-
             //check if email exists elsewhere
-            if(serverOutput != null && serverOutput[0].equals("")){
-                Toast toast = Toast.makeText(getApplicationContext(),"Account already exists!", Toast.LENGTH_SHORT);
+            if(serverOutput != null && serverOutput[0].equals("email")){
+                Log.w("RA","make toast");
+                Toast toast = Toast.makeText(getApplicationContext(),"Email already in use. Login!", Toast.LENGTH_SHORT);
                 toast.show();
             }else{
                 //go to account screen
@@ -65,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         }else{
-            Toast toast = Toast.makeText(getApplicationContext(),"Verify Password incorrect!", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(),"Verify Password must equal Password!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
