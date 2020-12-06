@@ -1,6 +1,7 @@
 package com.victoriamatos.valuapp;
 
 public class User {
+    public static final int PTS_FOR_CARD = 25;
     public String firstName;
     public String lastName;
     public String email;
@@ -33,7 +34,7 @@ public class User {
 
     //default
     public User() {
-        firstName = "";
+        firstName = "User";
         lastName = "";
         email = "";
         password = "";

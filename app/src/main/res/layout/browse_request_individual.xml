@@ -12,7 +12,6 @@
         android:layout_height="150dp"
         android:scaleType="centerCrop"
         android:id="@+id/pet_pic_small"
-        android:src="@drawable/cat"
         android:layout_margin="10dp"
         android:contentDescription="pet_picture">
     </ImageView>
@@ -70,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="View Request"
+        android:id="@+id/view_request"
         android:layout_below="@id/pet_pic_small"
         android:layout_alignLeft="@id/pet_pic_small"
         android:layout_alignRight="@id/pet_pic_small"

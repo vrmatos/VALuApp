@@ -34,12 +34,7 @@ public class ThreadTaskUrlPost extends Thread {
             //get output stream
             OutputStream os = connection.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os);
-
-            //email, password, firstName, lastName, streetAddress, city, state, zip
             osw.write(toWrite);
-            //osw.write("email=2jacksmith@gmail.com&password=pass1234&firstName=Jack&lastName=Smith" +
-            //                    "&streetAddress=123 Street St.&city=Baltimore&state=Maryland&zip=12345&latitude=1.0&longitude=2.0&points=3");
-
             osw.flush();
 
             //create an input stream for the URL
