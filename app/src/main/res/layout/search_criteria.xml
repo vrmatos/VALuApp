@@ -68,12 +68,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UPDATE SEARCH CRITERIA"
+        android:text="UPDATE SEARCH"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/search_criteria"
         android:background="@drawable/rounded_corners"
-        android:padding="10dp"
+        android:padding="15dp"
+        android:onClick="updateSearch"
         />
 
 

@@ -16,13 +16,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BrowseActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
+    private int searchDistance;
+    private String type;
+    private String breed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_requests_screen);
-        tth = new ThreadTaskHandler();
-        tth.postThreadTask(ThreadTaskHandler.URL_POST_BROWSE_REQUEST, "latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
+        tth = new ThreadTaskHandler(); //searchDistance, type, breed
+        Intent intent = getIntent();
+        searchDistance = intent.getIntExtra("searchDistance", -1);
+        type = intent.getStringExtra("type");
+        if(type == null)
+            type = "type";
+        breed = intent.getStringExtra("breed");
+        if(breed == null)
+            breed = "breed";
+        Log.w("BA",searchDistance + " " + type + " " + breed);
+        tth.postThreadTask(ThreadTaskHandler.URL_POST_SEARCH_REQUESTS, "latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude
+        + "&searchDistance=" + searchDistance + "&type=" + type + "&breed=" + breed);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -44,6 +57,9 @@ public class BrowseActivity extends AppCompatActivity {
     public void searchBy(View v){
         Log.w("BrowseAct","Inside searchBy");
         Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("searchDistance", searchDistance);
+        intent.putExtra("type", type);
+        intent.putExtra("breed", breed);
         startActivity(intent);
     }
 
@@ -53,8 +69,7 @@ public class BrowseActivity extends AppCompatActivity {
         LinearLayout browse = findViewById(R.id.browse_results2);
         LayoutInflater inflater = getLayoutInflater();
         View individual;
-
-        if(output[0] != null && !output[0].equals("noRequests")){
+        if(output != null && !output[0].equals("noRequests") && !output[0].equals("") ){
             try {
                 for (int i = 0; i < output.length; i++) {
                     info = output[i].split("\\|");

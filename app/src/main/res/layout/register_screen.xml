@@ -42,7 +42,8 @@
                     android:id="@+id/sitter_first_name"
                     android:hint="John"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="textPersonName"/>
             </TableRow>
 
             <TableRow
@@ -58,7 +59,8 @@
                     android:id="@+id/sitter_last_name"
                     android:hint="Smith"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="textPersonName"/>
             </TableRow>
 
             <TableRow
@@ -74,7 +76,8 @@
                     android:id="@+id/sitter_email"
                     android:hint="jsmith@domain.com"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="textEmailAddress"/>
             </TableRow>
 
             <TableRow
@@ -90,7 +93,8 @@
                     android:id="@+id/sitter_password"
                     android:hint="ABCabc123!@#$%^*"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="textVisiblePassword"/>
             </TableRow>
 
             <TableRow
@@ -137,7 +141,8 @@
                     android:id="@+id/sitter_address_line1"
                     android:hint="123 Street St"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="text"/>
             </TableRow>
 
             <TableRow
@@ -153,7 +158,8 @@
                     android:id="@+id/sitter_address_line2"
                     android:hint="Apartment, suite, unit, etc"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="text"/>
             </TableRow>
 
             <TableRow
@@ -169,7 +175,8 @@
                     android:id="@+id/sitter_city"
                     android:hint="AnyTown"
                     style="@style/TableText"
-                    android:layout_weight="4"/>
+                    android:layout_weight="4"
+                    android:inputType="text"/>
             </TableRow>
 
             <TableRow
@@ -186,7 +193,8 @@
                     android:hint="MD"
                     style="@style/TableText"
                     android:layout_weight="4"
-                    android:maxLength="2"/>
+                    android:maxLength="2"
+                    android:inputType="text"/>
             </TableRow>
 
             <TableRow
@@ -203,7 +211,8 @@
                     android:hint="01234"
                     style="@style/TableText"
                     android:layout_weight="4"
-                    android:maxLength="5"/>
+                    android:maxLength="5"
+                    android:inputType="number"/>
             </TableRow>
 
         </TableLayout>
