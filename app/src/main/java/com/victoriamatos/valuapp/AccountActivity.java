@@ -21,7 +21,7 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.account_screen);
         tth = new ThreadTaskHandler();
         TextView tv = findViewById(R.id.welcome_message);
-        tv.setText("Welcome " + user.firstName + "!");
+        tv.setText("Welcome " + user.firstName + " " + user.lastName + "!");
         updatePoints();
     }
 

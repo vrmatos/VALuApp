@@ -8,19 +8,22 @@ import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class IndivRequestActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
+    private int bookingId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_request_screen);
         Bundle bundle = getIntent().getExtras();
+        bookingId = bundle.getInt("id");
         tth = new ThreadTaskHandler();
-        tth.postThreadTask(ThreadTaskHandler.URL_POST_VIEW_REQUEST, "id=" + bundle.getInt("id") + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
+        tth.postThreadTask(ThreadTaskHandler.URL_POST_VIEW_REQUEST, "id=" + bookingId + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -39,7 +42,22 @@ public class IndivRequestActivity extends AppCompatActivity {
     public void bookRequest(View v){
         Log.w("IRA","Inside bookRequest");
         // do the booking, update server
-        finish();
+        tth.postThreadTask(ThreadTaskHandler.URL_POST_BOOK_REQUEST, "id=" + bookingId + "&email=" + AccountActivity.user.email);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Toast toast;
+        String[] output = tth.getThreadOutput();
+        if(output[0].equals("success")){
+            Intent intent = new Intent(this, BrowseActivity.class);
+            startActivity(intent);
+        }
+        else {
+            toast = Toast.makeText(getApplicationContext(), "Booking Failure", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void updateView(String[] info){

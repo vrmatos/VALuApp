@@ -60,14 +60,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/distance_line">
                 <TextView
-                    android:text="End Date: "
+                    android:text="Distance: "
                     style="@style/TableText"/>
 
                 <TextView
                     android:id="@+id/distance_indiv"
                     style="@style/TableText"
                     android:layout_height="match_parent"
-                    android:text="12/20/2020" />
+                    android:text="20 miles" />
             </TableRow>
         </TableLayout>
 
