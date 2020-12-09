@@ -45,7 +45,7 @@ public class UpdateActivity extends AppCompatActivity {
         ed6.setText(address[0]);
         if(address.length == 2) {
             EditText ed7 = findViewById(R.id.update_address_line2);
-            ed7.setText(address[0]);
+            ed7.setText(address[1]);
         }
 
         EditText ed8 = findViewById(R.id.update_city);

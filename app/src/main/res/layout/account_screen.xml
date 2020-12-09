@@ -92,7 +92,7 @@
         android:id="@+id/visualize_button"
         android:layout_below="@id/points_line"
         android:layout_marginTop="30dp"
-        android:text="View Booked Requests"
+        android:text="View Bookings"
         android:onClick="viewBookedRequests"/>
 
     <Button

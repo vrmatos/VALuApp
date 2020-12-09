@@ -101,6 +101,11 @@ public class BrowseActivity extends AppCompatActivity {
                 npe.printStackTrace();
             }
         }
+    }
 
+    public void goHome(View v){
+        Log.w("BA", "Inside goHome");
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
     }
 }

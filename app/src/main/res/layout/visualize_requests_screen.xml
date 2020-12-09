@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/requests_label"
             android:background="@color/green"
-            android:text="YOUR BOOKED REQUESTS"
+            android:text="YOUR BOOKINGS"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:padding="10sp"
