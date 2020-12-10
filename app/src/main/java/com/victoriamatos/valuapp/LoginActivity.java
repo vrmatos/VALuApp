@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         String[] output = tth.getThreadOutput(); //firstName, lastName, latitude, longitude, points
-        if(output.length != 5) {
+        if(output.length != 6) {
             Toast toast;
             if(output[0].equals("email"))
                 toast = Toast.makeText(getApplicationContext(), "Email doesn't have account. Sign up!", Toast.LENGTH_SHORT);
@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             AccountActivity.user.setLatitude(Float.parseFloat(output[2]));
             AccountActivity.user.setLongitude(Float.parseFloat(output[3]));
             AccountActivity.user.setPoints(Integer.parseInt(output[4]));
+            AccountActivity.user.setCurrDate(output[5]);
             return 1;
         }
     }

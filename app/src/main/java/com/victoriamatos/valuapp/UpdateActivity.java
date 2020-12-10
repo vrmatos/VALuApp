@@ -97,14 +97,21 @@ public class UpdateActivity extends AppCompatActivity {
             String[] serverOutput = tth.getThreadOutput();
             //check if email exists elsewhere
             if (serverOutput != null && serverOutput[0].equals("email")) {
-                Log.w("RA", "make toast");
+                Log.w("UA", "make toast");
                 Toast toast = Toast.makeText(getApplicationContext(), "Email already in use!", Toast.LENGTH_SHORT);
                 toast.show();
-            } else {
+            } else if (serverOutput[0].equals("noGeocode")){
+                Log.w("UA", "make toast");
+                Toast toast = Toast.makeText(getApplicationContext(), "Bad address!", Toast.LENGTH_SHORT);
+                toast.show();
+            } else{
                 //go to account screen
+                AccountActivity.user.latitude = Float.parseFloat(serverOutput[0]);
+                AccountActivity.user.longitude = Float.parseFloat(serverOutput[1]);
                 Intent intent = new Intent(this, AccountActivity.class);
                 startActivity(intent);
             }
+
         }else{
             Toast toast = Toast.makeText(getApplicationContext(),"Verify Password must equal Password!", Toast.LENGTH_SHORT);
             toast.show();

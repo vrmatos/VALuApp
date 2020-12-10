@@ -2,6 +2,7 @@ package com.victoriamatos.valuapp;
 
 public class User {
     public static final int PTS_FOR_CARD = 25;
+    public String currDate;
     public String firstName;
     public String lastName;
     public String email;
@@ -17,7 +18,7 @@ public class User {
     //for LoginActivity
     public User(String newEmail, String pass){
         email = newEmail;
-        encrypt(pass);
+        password = pass;
         firstName = "User";
         lastName = "";
         streetAddress = "";
@@ -29,16 +30,17 @@ public class User {
         points = 0;
     }
 
-    public User(String first, String last, String newEmail, String pass, String street, String newCity, String newState, String newZip){
+    public User(String first, String last, String newEmail, String pass, String street, String newCity, String newState, String newZip, float lat, float lon){
         firstName = first;
         lastName = last;
         email = newEmail;
-        encrypt(pass);
+        password = pass;
         streetAddress = street;
         city = newCity;
         state = newState;
         zip = newZip;
-        convertZipToCoords();
+        latitude = lat;
+        longitude = lon;
     }
 
     //default
@@ -68,28 +70,18 @@ public class User {
     public void setLatitude(float lat){latitude = lat;}
     public void setLongitude(float newLong){longitude = newLong;}
     public void setPoints(int pts){points = pts;}
+    public void setCurrDate(String s) {currDate = s;}
 
     //getters
     public String getEncryptedPassword(){return password;}
-
-    public void encrypt(String pass){
-        //encrypt password
-        password = pass;
-    }
-
-    public void convertZipToCoords(){
-        //latitude =
-        //longitude =
-    }
 
     public void postUserToDatabase(ThreadTaskHandler tth, String url){
         tth.postThreadTask(url,"str");
     }
 
     public String toThreadTaskString(){
-        convertZipToCoords();
         return "email=" + email + "&password=" + password + "&firstName=" + firstName + "&lastName=" + lastName
-                + "&streetAddress=" + streetAddress + "&city=" + city + "&state=" + state + "&zip=" + zip + "&latitude=" + latitude + "&longitude=" + longitude;
+                + "&streetAddress=" + streetAddress + "&city=" + city + "&state=" + state + "&zip=" + zip;
     }
 
 }

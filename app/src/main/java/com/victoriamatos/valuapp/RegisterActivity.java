@@ -65,8 +65,14 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.w("RA","make toast");
                 Toast toast = Toast.makeText(getApplicationContext(),"Email already in use. Login!", Toast.LENGTH_SHORT);
                 toast.show();
-            }else{
+            }else if (serverOutput[0].equals("noGeocode")){
+                Log.w("UA", "make toast");
+                Toast toast = Toast.makeText(getApplicationContext(), "Bad address!", Toast.LENGTH_SHORT);
+                toast.show();
+            } else{
                 //go to account screen
+                AccountActivity.user.latitude = Float.parseFloat(serverOutput[0]);
+                AccountActivity.user.longitude = Float.parseFloat(serverOutput[1]);
                 Intent intent = new Intent(this, AccountActivity.class);
                 startActivity(intent);
             }
