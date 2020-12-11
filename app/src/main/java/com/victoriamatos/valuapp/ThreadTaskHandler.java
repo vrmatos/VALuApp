@@ -19,6 +19,8 @@ public class ThreadTaskHandler {
     public static final String URL_POST_BOOK_REQUEST = "http://valu.cs.loyola.edu/bookRequest.php";
     public static final String URL_POST_BOOKED_REQUESTS = "http://valu.cs.loyola.edu/bookedRequests.php";
     public static final String URL_POST_SEARCH_REQUESTS = "http://valu.cs.loyola.edu/searchRequests.php";
+    public static final String URL_POST_POINT_UPDATE = "http://valu.cs.loyola.edu/pointUpdate.php";
+    public static final String URL_POST_POINT_UPDATE2 = "http://valu.cs.loyola.edu/pointUpdate2.php";
     private String[] threadOutput;
 
     public void postThreadTask(String url, String toWrite){
