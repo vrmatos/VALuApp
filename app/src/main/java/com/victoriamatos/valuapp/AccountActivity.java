@@ -104,7 +104,8 @@ public class AccountActivity extends AppCompatActivity {
 
     public void logout(View v){
         user = new User();
-        finish();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 
 }

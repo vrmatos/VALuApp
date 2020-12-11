@@ -23,7 +23,7 @@ public class UpdateActivity extends AppCompatActivity {
         originalEmail = AccountActivity.user.email;
         tth.postThreadTask(ThreadTaskHandler.URL_POST_UPDATE_ACCT, "oldEmail=" + AccountActivity.user.email);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,6 @@ public class UpdateActivity extends AppCompatActivity {
         ed2.setText(AccountActivity.user.lastName);
         EditText ed3 = findViewById(R.id.update_email);
         ed3.setText(AccountActivity.user.email);
-
         String[] address = info[0].split(",");
         EditText ed6 = findViewById(R.id.update_address_line1);
         ed6.setText(address[0]);

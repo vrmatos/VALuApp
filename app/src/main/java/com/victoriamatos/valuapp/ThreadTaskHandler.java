@@ -1,6 +1,12 @@
 package com.victoriamatos.valuapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ThreadTaskHandler {
     public static final String URL_POST_LOGIN = "http://valu.cs.loyola.edu/appLogin.php";

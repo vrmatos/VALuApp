@@ -23,7 +23,7 @@ public class SearchActivity extends AppCompatActivity {
         type = bundle.getString("type","type");
         breed = bundle.getString("breed","breed");
         Log.w("SA",searchDistance + " " + type + " " + breed);
-        //updateView();
+
     }
 
     public void updateSearch(View v){
@@ -56,19 +56,4 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void updateView(){
-        if(searchDistance != -1){
-            //EditText ed1 = findViewById(R.id.search_distance);
-            //ed1.setText(searchDistance);
-        }
-        if(!type.equals("type")){
-            EditText ed2 = findViewById(R.id.search_pet_type);
-            ed2.setText(type);
-        }
-        if(!breed.equals("breed")){
-            EditText ed3 = findViewById(R.id.search_pet_breed);
-            ed3.setText(breed);
-        }
-
-    }
 }

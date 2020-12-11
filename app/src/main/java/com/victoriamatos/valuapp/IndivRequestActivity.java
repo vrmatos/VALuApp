@@ -1,6 +1,8 @@
 package com.victoriamatos.valuapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class IndivRequestActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
     private int bookingId;
+    private HttpImageRequest hir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,7 @@ public class IndivRequestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         bookingId = bundle.getInt("id");
         tth = new ThreadTaskHandler();
+        hir = new HttpImageRequest();
         tth.postThreadTask(ThreadTaskHandler.URL_POST_VIEW_REQUEST, "id=" + bookingId + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
@@ -80,10 +84,16 @@ public class IndivRequestActivity extends AppCompatActivity {
         TextView tv9 = findViewById(R.id.pet_description);
         tv9.setText(info[9]);
 
-        //pet_pic with info[10]
-        ImageView image = findViewById(R.id.pet_pic);
-        int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
-        image.setImageResource(pet_pic_id);
+        if(info[10].equals("Photo link goes here")){
+            Log.w("IBRA", "Default pet pic placed");
+            ImageView image = findViewById(R.id.pet_pic);
+            int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
+            image.setImageResource(pet_pic_id);
+        }else{
+            ImageView iv = findViewById(R.id.pet_pic);
+            hir.updateView(iv);
+            hir.execute(info[10]);
+        }
 
         TextView tv11 = findViewById(R.id.distance_indiv);
         tv11.setText(info[11]);

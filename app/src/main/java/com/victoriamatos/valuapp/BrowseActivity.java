@@ -1,6 +1,8 @@
 package com.victoriamatos.valuapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +21,14 @@ public class BrowseActivity extends AppCompatActivity {
     private int searchDistance;
     private String type;
     private String breed;
+    private HttpImageRequest hir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_requests_screen);
         tth = new ThreadTaskHandler(); //searchDistance, type, breed
+        hir = new HttpImageRequest();
         Intent intent = getIntent();
         searchDistance = intent.getIntExtra("searchDistance", -1);
         type = intent.getStringExtra("type");
@@ -82,11 +86,16 @@ public class BrowseActivity extends AppCompatActivity {
                     TextView tv3 = individual.findViewById(R.id.pet_breed_small);
                     tv3.setText("Pet Breed: " + info[2]);
 
-                    //info[3] will have whatever we have for image
-                    ImageView image = individual.findViewById(R.id.pet_pic_small);
-                    int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
-                    image.setImageResource(pet_pic_id);
-
+                    if(info[3].equals("Photo link goes here")){
+                        Log.w("IBRA", "Default pet pic placed");
+                        ImageView image = individual.findViewById(R.id.pet_pic_small);
+                        int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
+                        image.setImageResource(pet_pic_id);
+                    }else{
+                        ImageView iv = individual.findViewById(R.id.pet_pic_small);
+                        hir.updateView(iv);
+                        hir.execute(info[3]);
+                    }
                     TextView tv5 = individual.findViewById(R.id.distance);
                     tv5.setText("Distance: " + info[4] + " miles");
                     TextView tv6 = individual.findViewById(R.id.date_start);

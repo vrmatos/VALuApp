@@ -10,7 +10,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:id="@+id/pet_pic"
             android:layout_margin="10dp"
             android:contentDescription="pet_picture">

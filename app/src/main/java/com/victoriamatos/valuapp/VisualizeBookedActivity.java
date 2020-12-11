@@ -1,6 +1,8 @@
 package com.victoriamatos.valuapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class VisualizeBookedActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
+    private HttpImageRequest hir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visualize_requests_screen);
         tth = new ThreadTaskHandler();
+        hir = new HttpImageRequest();
         tth.postThreadTask(ThreadTaskHandler.URL_POST_BOOKED_REQUESTS, "email=" + AccountActivity.user.email + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
@@ -50,6 +55,7 @@ public class VisualizeBookedActivity extends AppCompatActivity {
                     info = output[i].split("\\|");
                     //id (of request), type (of pet), breed (of pet), photo (of pet), distance, [startDate], [endDate]
                     individual = inflater.inflate(R.layout.browse_request_individual, browse, false);
+                    //individual.setBackground(R.drawable.cyan_border);
                     Button b1 = individual.findViewById(R.id.view_request);
                     b1.setId(Integer.parseInt(info[0]));
                     TextView tv2 = individual.findViewById(R.id.pet_type_small);
@@ -58,9 +64,16 @@ public class VisualizeBookedActivity extends AppCompatActivity {
                     tv3.setText("Pet Breed: " + info[2]);
 
                     //info[3] will have whatever we have for image
-                    ImageView image = individual.findViewById(R.id.pet_pic_small);
-                    int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
-                    image.setImageResource(pet_pic_id);
+                    if(info[3].equals("Photo link goes here")){
+                        Log.w("IBRA", "Default pet pic placed");
+                        ImageView image = individual.findViewById(R.id.pet_pic_small);
+                        int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
+                        image.setImageResource(pet_pic_id);
+                    }else{
+                        ImageView iv = individual.findViewById(R.id.pet_pic_small);
+                        hir.updateView(iv);
+                        hir.execute(info[3]);
+                    }
 
                     TextView tv5 = individual.findViewById(R.id.distance);
                     tv5.setText("Distance: " + info[4] + " miles");
