@@ -3,6 +3,7 @@ package com.victoriamatos.valuapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,6 @@ public class VisualizeBookedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visualize_requests_screen);
         tth = new ThreadTaskHandler();
-        hir = new HttpImageRequest();
         tth.postThreadTask(ThreadTaskHandler.URL_POST_BOOKED_REQUESTS, "email=" + AccountActivity.user.email + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
@@ -55,7 +55,6 @@ public class VisualizeBookedActivity extends AppCompatActivity {
                     info = output[i].split("\\|");
                     //id (of request), type (of pet), breed (of pet), photo (of pet), distance, [startDate], [endDate]
                     individual = inflater.inflate(R.layout.browse_request_individual, browse, false);
-                    //individual.setBackground(R.drawable.cyan_border);
                     Button b1 = individual.findViewById(R.id.view_request);
                     b1.setId(Integer.parseInt(info[0]));
                     TextView tv2 = individual.findViewById(R.id.pet_type_small);
@@ -71,6 +70,7 @@ public class VisualizeBookedActivity extends AppCompatActivity {
                         image.setImageResource(pet_pic_id);
                     }else{
                         ImageView iv = individual.findViewById(R.id.pet_pic_small);
+                        hir = new HttpImageRequest();
                         hir.updateView(iv);
                         hir.execute(info[3]);
                     }
@@ -81,6 +81,10 @@ public class VisualizeBookedActivity extends AppCompatActivity {
                     tv6.setText(info[5]);
                     TextView tv7 = individual.findViewById(R.id.date_end);
                     tv7.setText(info[6]);
+
+                    if(AccountActivity.user.compareToCurrDate(info[5]) == 1){
+                        individual.setBackgroundResource(R.drawable.green_border);
+                    }
 
                     browse.addView(individual);
 

@@ -94,7 +94,7 @@
                     android:hint="ABCabc123!@#$%^*"
                     style="@style/TableText"
                     android:layout_weight="4"
-                    android:inputType="textVisiblePassword"/>
+                    android:inputType="textPassword"/>
             </TableRow>
 
             <TableRow

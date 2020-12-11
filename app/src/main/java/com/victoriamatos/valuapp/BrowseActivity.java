@@ -28,7 +28,6 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_requests_screen);
         tth = new ThreadTaskHandler(); //searchDistance, type, breed
-        hir = new HttpImageRequest();
         Intent intent = getIntent();
         searchDistance = intent.getIntExtra("searchDistance", -1);
         type = intent.getStringExtra("type");
@@ -39,7 +38,7 @@ public class BrowseActivity extends AppCompatActivity {
             breed = "breed";
         Log.w("BA",searchDistance + " " + type + " " + breed);
         tth.postThreadTask(ThreadTaskHandler.URL_POST_SEARCH_REQUESTS, "latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude
-        + "&searchDistance=" + searchDistance + "&type=" + type + "&breed=" + breed);
+                + "&searchDistance=" + searchDistance + "&type=" + type + "&breed=" + breed);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -93,6 +92,7 @@ public class BrowseActivity extends AppCompatActivity {
                         image.setImageResource(pet_pic_id);
                     }else{
                         ImageView iv = individual.findViewById(R.id.pet_pic_small);
+                        hir = new HttpImageRequest();
                         hir.updateView(iv);
                         hir.execute(info[3]);
                     }

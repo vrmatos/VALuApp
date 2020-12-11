@@ -1,5 +1,9 @@
 package com.victoriamatos.valuapp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User {
     public static final int PTS_FOR_CARD = 25;
     public String currDate;
@@ -75,13 +79,29 @@ public class User {
     //getters
     public String getEncryptedPassword(){return password;}
 
-    public void postUserToDatabase(ThreadTaskHandler tth, String url){
-        tth.postThreadTask(url,"str");
-    }
 
     public String toThreadTaskString(){
         return "email=" + email + "&password=" + password + "&firstName=" + firstName + "&lastName=" + lastName
                 + "&streetAddress=" + streetAddress + "&city=" + city + "&state=" + state + "&zip=" + zip;
+    }
+
+    public int compareToCurrDate(String date){
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date curr = null;
+        Date owner = null;
+        try {
+            curr = sdformat.parse(currDate);
+            owner = sdformat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(curr.compareTo(owner) > 0) {
+            //curr occurs after ownerEnd
+            return 1;
+        } else {
+            //curr occurs before ownerEnd
+            return 0;
+        }
     }
 
 }

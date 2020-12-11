@@ -22,7 +22,6 @@ public class IndivBookedRequestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         bookingId = bundle.getInt("id");
         tth = new ThreadTaskHandler();
-        hir = new HttpImageRequest();
         tth.postThreadTask(ThreadTaskHandler.URL_POST_VIEW_REQUEST, "id=" + bookingId + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
@@ -64,17 +63,13 @@ public class IndivBookedRequestActivity extends AppCompatActivity {
             image.setImageResource(pet_pic_id);
         }else{
             ImageView iv = findViewById(R.id.pet_pic);
+            hir = new HttpImageRequest();
             hir.updateView(iv);
             hir.execute(info[10]);
         }
         TextView tv11 = findViewById(R.id.distance_indiv);
-        tv11.setText(info[11]);
+        tv11.setText(info[11] + " miles");
 
     }
 
-    //eventually a rate method
-    public void rate(View v){
-        //do the rating - go to a rate screen?
-        finish();
-    }
 }

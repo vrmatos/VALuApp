@@ -26,7 +26,6 @@ public class IndivRequestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         bookingId = bundle.getInt("id");
         tth = new ThreadTaskHandler();
-        hir = new HttpImageRequest();
         tth.postThreadTask(ThreadTaskHandler.URL_POST_VIEW_REQUEST, "id=" + bookingId + "&latitude=" + AccountActivity.user.latitude + "&longitude=" + AccountActivity.user.longitude);
         try {
             Thread.sleep(1000);
@@ -39,8 +38,6 @@ public class IndivRequestActivity extends AppCompatActivity {
             updateView(output);
         else
             finish();
-        //ownerEmail, startDate, endDate, firstName (of owner), lastName (of owner), zip (of owner), name (of pet), type (of pet), breed (of pet), description (of pet), photo (of pet), distance
-        //myemail@gmail.com|2021-01-01|2021-01-08|Jimmy|Fitzgerald|75308|Ruffles|Chicken|Free-range|For love, not food|Photo link goes here|[distance]
     }
 
     public void bookRequest(View v){
@@ -91,12 +88,13 @@ public class IndivRequestActivity extends AppCompatActivity {
             image.setImageResource(pet_pic_id);
         }else{
             ImageView iv = findViewById(R.id.pet_pic);
+            hir = new HttpImageRequest();
             hir.updateView(iv);
             hir.execute(info[10]);
         }
 
         TextView tv11 = findViewById(R.id.distance_indiv);
-        tv11.setText(info[11]);
+        tv11.setText(info[11] + " miles");
 
     }
 
