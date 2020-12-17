@@ -9,13 +9,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents the user updating the search criteria for browse request
+ */
 public class SearchActivity extends AppCompatActivity {
     private int searchDistance;
     private String type;
     private String breed;
 
+    /**
+     * Initializes SearchActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("SA", "Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_criteria);
         Bundle bundle = getIntent().getExtras();
@@ -26,6 +34,10 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Updates the search criteria with provided values
+     * @param v, of button pressed
+     */
     public void updateSearch(View v){
         Log.w("SA","Inside updateSearch");
         EditText ed1 = findViewById(R.id.search_distance);

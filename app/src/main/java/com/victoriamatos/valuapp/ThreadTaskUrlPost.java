@@ -10,17 +10,30 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * This class posts information to a certain url and gets information back
+ */
 public class ThreadTaskUrlPost extends Thread {
     private String postUrl;
     private String toWrite;
     private ThreadTaskHandler tth;
 
+    /**
+     * Constructor for the ThreadTaskUrlPost class
+     * @param handler, the class that handles this class
+     * @param newUrl, the url to post information to
+     * @param newWrite, the information to write
+     */
     public ThreadTaskUrlPost(ThreadTaskHandler handler, String newUrl, String newWrite){
+        Log.w("TTUP", "Inside ThreadTaskUrlPost constructor");
         tth = handler;
         postUrl = newUrl;
         toWrite = newWrite;
     }
 
+    /**
+     * Runs the ThreadTask
+     */
     public void run(){
         //update View
         Log.w("TTUP", "Inside run");
@@ -46,7 +59,6 @@ public class ThreadTaskUrlPost extends Thread {
             String s = "";
             while ( (line = br.readLine()) != null)
                 s += line;
-            //activity.updateView(s);
             Log.w("TTUP", "s = " + s);
             tth.setThreadOutput(s);
         } catch (Exception e){

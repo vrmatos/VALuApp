@@ -10,13 +10,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents an individual booked request
+ */
 public class IndivBookedRequestActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
-    private int bookingId;
     private HttpImageRequest hir;
+    private int bookingId; //the id of the individual booked request represented
 
+    /**
+     * Initializes IndivBookedRequestActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("IBRA","Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_booked_request_screen);
         Bundle bundle = getIntent().getExtras();
@@ -36,7 +44,12 @@ public class IndivBookedRequestActivity extends AppCompatActivity {
             finish();
     }
 
+    /**
+     * Updates the view declared in onCreate with the specific request's info
+     * @param info, the info of the request
+     */
     public void updateView(String[] info){
+        Log.w("IBRA", "Inside updateView");
         TextView tv1 = findViewById(R.id.owner_email);
         tv1.setText(info[0]);
         TextView tv2 = findViewById(R.id.start_date);
@@ -56,10 +69,10 @@ public class IndivBookedRequestActivity extends AppCompatActivity {
         TextView tv9 = findViewById(R.id.pet_description);
         tv9.setText(info[9]);
 
-        if(info[10].equals("Photo link goes here")){
+        if(info[10].equals("Photo link goes here") || info[10].equals("")){
             Log.w("IBRA", "Default pet pic placed");
             ImageView image = findViewById(R.id.pet_pic);
-            int pet_pic_id = this.getResources().getIdentifier("cat", "drawable", this.getPackageName());
+            int pet_pic_id = this.getResources().getIdentifier("pets_default", "drawable", this.getPackageName());
             image.setImageResource(pet_pic_id);
         }else{
             ImageView iv = findViewById(R.id.pet_pic);

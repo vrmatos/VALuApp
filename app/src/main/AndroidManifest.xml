@@ -23,7 +23,6 @@
         <activity android:name=".IndivRequestActivity"/>
         <activity android:name=".BrowseActivity"/>
         <activity android:name=".VisualizeBookedActivity"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".AccountActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".SearchActivity"/>

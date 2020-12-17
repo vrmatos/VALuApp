@@ -10,12 +10,21 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * This class represents getting images from the server through a url
+ */
 public class HttpImageRequest extends AsyncTask<String, Void, Bitmap> {
     public static final String URL_GET_IMAGE_PREFIX = "http://valu.cs.loyola.edu/uploads/";
     private ImageView img;
 
+    /**
+     * Accesses the image and turns it into a bitmap
+     * @param strings, the image name
+     * @return Bitmap representing the image
+     */
     @Override
     protected Bitmap doInBackground(String... strings) {
+        Log.w("HIR", "Inside doInBackground");
         try{
             URL url = new URL(URL_GET_IMAGE_PREFIX + strings[0]);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -31,13 +40,22 @@ public class HttpImageRequest extends AsyncTask<String, Void, Bitmap> {
         return null;
     }
 
+    /**
+     * After doInBackground, sets a specific ImageView as itself
+     * @param result, the Bitmap the ImageView will be set to
+     */
     @Override
     protected void onPostExecute(Bitmap result) {
+        Log.w("HIR","inside onPostExecute, set img_view");
         img.setImageBitmap(result);
-        Log.w("HIR","set img_view");
     }
 
+    /**
+     * Changes which ImageView the class updates
+     * @param iv, the ImageView changing to
+     */
     public void updateView(ImageView iv){
+        Log.w("HIR", "Inside updateView");
         img = iv;
     }
 }

@@ -11,12 +11,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents the home screen of the app
+ */
 public class AccountActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
-    public static User user;
+    public static User user; //User = the model used throughout the activities
 
+    /**
+     * Initializes AccountActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("Acct", "Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_screen);
         tth = new ThreadTaskHandler();
@@ -25,7 +33,11 @@ public class AccountActivity extends AppCompatActivity {
         updatePoints();
     }
 
+    /**
+     * Updates the user's points from user
+     */
     public void updatePoints(){
+        Log.w("Acct", "Inside updatePoints");
         int user_pts = user.points;
         TextView tv = findViewById(R.id.total_points);
         tv.setText("Total Points: " + user_pts);
@@ -35,35 +47,50 @@ public class AccountActivity extends AppCompatActivity {
         tv2.setText("Gift Cards: " + user_pts / 25);
     }
 
-    // have a back to account button or swipe back w/gesture; need a label
+    /**
+     * Goes to VisualizeBookedActivity, onClick
+     * @param v, of button pressed
+     */
     public void viewBookedRequests(View v){
         Log.w("Acct","Inside viewBookedRequests");
         Intent intent = new Intent(this, VisualizeBookedActivity.class);
         startActivity(intent);
     }
 
-    // have browse screen either goback button or swipe back w/ gesture
+    /**
+     * Goes to BrowseActivity, onClick
+     * @param v, of button pressed
+     */
     public void browseRequests(View v){
         Log.w("Acct","Inside browseRequests");
         Intent intent = new Intent(this, BrowseActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to UpdateActivity, onClick
+     * @param v, of button pressed
+     */
     public void updateAcct(View v){
         Log.w("Acct","Inside updateAcct");
         Intent intent = new Intent(this, UpdateActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Deletes the user's account, onClick
+     * @param v, of button pressed
+     */
     public void deleteAcct(View v){
         Log.w("Acct","Inside deleteAcct");
         showDeleteAcctDialog();
     }
 
     /**
-     * sets up the new game dialog box
+     * Sets up the delete account dialog box
      */
     public void showDeleteAcctDialog( ) {
+        Log.w("Acct", "Inside showDeleteAcctDialog");
         // build an alert box (and show it)
         AlertDialog.Builder alert = new AlertDialog.Builder( this );
         alert.setTitle("Delete Account: " + user.email);
@@ -79,16 +106,16 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     /**
-     * sets up event handling for the new game dialog box
+     * Sets up event handling for the delete account dialog box
      */
     public class PlayDialog implements DialogInterface.OnClickListener {
         /**
-         * what happens on a click in the new game dialog box
+         * what happens on a click in the delte game dialog box
          * @param dialog, the dialog that will be shown
          * @param which, the button clicked
          */
         public void onClick( DialogInterface dialog, int which ) {
-            Log.w("AcctAct", "Inside PlayDialog, onClick");
+            Log.w("Acct", "Inside PlayDialog, onClick");
             if( which == Dialog.BUTTON_POSITIVE ) { // positive button clicked
                 //do account deleting
                 tth.postThreadTask(ThreadTaskHandler.URL_POST_DELETE, "email=" + user.email);
@@ -102,7 +129,12 @@ public class AccountActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Logs the user out of their account
+     * @param v, of button pressed
+     */
     public void logout(View v){
+        Log.w("Acct", "Inside logout");
         user = new User();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);

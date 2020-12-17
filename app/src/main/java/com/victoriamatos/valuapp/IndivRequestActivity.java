@@ -14,13 +14,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents the individual request
+ */
 public class IndivRequestActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
-    private int bookingId;
     private HttpImageRequest hir;
+    private int bookingId; //the id of the individual request
 
+    /**
+     * Initializes IndivRequestActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("IRA", "Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_request_screen);
         Bundle bundle = getIntent().getExtras();
@@ -40,6 +48,10 @@ public class IndivRequestActivity extends AppCompatActivity {
             finish();
     }
 
+    /**
+     * Books this specific request for the user
+     * @param v, of button pressed
+     */
     public void bookRequest(View v){
         Log.w("IRA","Inside bookRequest");
         // do the booking, update server
@@ -61,7 +73,12 @@ public class IndivRequestActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates the view declared in onCreate with the specific request's info
+     * @param info, the info of the request
+     */
     public void updateView(String[] info){
+        Log.w("IRA", "Inside updateView");
         TextView tv1 = findViewById(R.id.owner_email);
         tv1.setText(info[0]);
         TextView tv2 = findViewById(R.id.start_date);

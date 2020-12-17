@@ -1,11 +1,19 @@
 package com.victoriamatos.valuapp;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class represent the user's who information is changed/processed/used throughout the app
+ */
+
 public class User {
     public static final int PTS_FOR_CARD = 25;
+
+    /* The User's information */
     public String currDate;
     public String firstName;
     public String lastName;
@@ -19,8 +27,13 @@ public class User {
     public float longitude;
     public int points;
 
-    //for LoginActivity
+    /**
+     * The constructor that initializes User with its email and password
+     * @param newEmail, the User's email
+     * @param pass, the User's password
+     */
     public User(String newEmail, String pass){
+        Log.w("User", "Inside User's login constructor");
         email = newEmail;
         password = pass;
         firstName = "User";
@@ -34,21 +47,11 @@ public class User {
         points = 0;
     }
 
-    public User(String first, String last, String newEmail, String pass, String street, String newCity, String newState, String newZip, float lat, float lon){
-        firstName = first;
-        lastName = last;
-        email = newEmail;
-        password = pass;
-        streetAddress = street;
-        city = newCity;
-        state = newState;
-        zip = newZip;
-        latitude = lat;
-        longitude = lon;
-    }
-
-    //default
+    /**
+     * The default constructor
+     */
     public User() {
+        Log.w("User", "Inside User's default constrcutor");
         firstName = "User";
         lastName = "";
         email = "";
@@ -62,7 +65,7 @@ public class User {
         points = 0;
     }
 
-    //setters
+    /* Setters for the class */
     public void setFirstName(String first){firstName = first;}
     public void setLastName(String last){lastName = last;}
     public void setEmail(String newEmail){email = newEmail;}
@@ -76,16 +79,26 @@ public class User {
     public void setPoints(int pts){points = pts;}
     public void setCurrDate(String s) {currDate = s;}
 
-    //getters
+    /* Getters for the class */
     public String getEncryptedPassword(){return password;}
 
-
+    /**
+     * Turns the User's information into a string for posting to a script
+     * @return, said string
+     */
     public String toThreadTaskString(){
+        Log.w("User", "Inside toThreadTaskString");
         return "email=" + email + "&password=" + password + "&firstName=" + firstName + "&lastName=" + lastName
                 + "&streetAddress=" + streetAddress + "&city=" + city + "&state=" + state + "&zip=" + zip;
     }
 
+    /**
+     * Compares the current date, stored with User's info, to given date
+     * @param date, to compare to current
+     * @return, 1 iff current date occurs after given date, 0 else
+     */
     public int compareToCurrDate(String date){
+        Log.w("User", "Inside compareToCurrDate");
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
         Date curr = null;
         Date owner = null;

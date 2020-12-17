@@ -11,15 +11,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
+/**
+ * This class updates the user's account
+ */
 public class UpdateActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
     private String originalEmail;
+
+    /**
+     * Initializes UpdateActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("UA", "Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_account);
+
+        //starts with getting the account information
         tth = new ThreadTaskHandler();
-        //oldEmail --> streetAddress, city, state, zip
         originalEmail = AccountActivity.user.email;
         tth.postThreadTask(ThreadTaskHandler.URL_POST_UPDATE_ACCT, "oldEmail=" + AccountActivity.user.email);
         try {
@@ -32,7 +42,12 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Updates the update account view to have the current account information
+     * @param info, the user's info to update the view with
+     */
     public void updateViewInitial(String[] info){
+        Log.w("UA", "Inside updateViewInitial");
         EditText ed1 = findViewById(R.id.update_first_name);
         ed1.setText(AccountActivity.user.firstName);
         EditText ed2 = findViewById(R.id.update_last_name);
@@ -55,17 +70,18 @@ public class UpdateActivity extends AppCompatActivity {
         ed10.setText(info[3]);
     }
 
-    //newEmail --> "email" | password, firstName, lastName, streetAddress, city, state, zip, latitude, longitude, oldEmail
-
-
-    //update_first_name, update_last_name, update_email, update_password, update_verify_password, update_address_line1, update_address_line2
-    //update_city, update_state, update_zip_code
+    /**
+     * Updates the user's account information with whatever is one the screen
+     * @param v, of the button pressed
+     */
     public void updateMe(View v){
+        Log.w("UA", "Inside updateMe");
         //verify password information
         EditText ed4 = findViewById(R.id.update_password);
         EditText ed5 = findViewById(R.id.update_verify_password);
 
         if(ed4.getText().toString().equals(ed5.getText().toString())) {
+            Log.w("UA", "passwords match");
             if (!ed4.getText().toString().equals(""))
                 AccountActivity.user.setPassword(ed4.getText().toString());
 
@@ -96,11 +112,11 @@ public class UpdateActivity extends AppCompatActivity {
             String[] serverOutput = tth.getThreadOutput();
             //check if email exists elsewhere
             if (serverOutput != null && serverOutput[0].equals("email")) {
-                Log.w("UA", "make toast");
+                Log.w("UA", "make toast email in use");
                 Toast toast = Toast.makeText(getApplicationContext(), "Email already in use!", Toast.LENGTH_SHORT);
                 toast.show();
             } else if (serverOutput[0].equals("noGeocode")){
-                Log.w("UA", "make toast");
+                Log.w("UA", "make toast bad address");
                 Toast toast = Toast.makeText(getApplicationContext(), "Bad address!", Toast.LENGTH_SHORT);
                 toast.show();
             } else{
@@ -112,6 +128,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
 
         }else{
+            Log.w("UA", "passwords don't match");
             Toast toast = Toast.makeText(getApplicationContext(),"Verify Password must equal Password!", Toast.LENGTH_SHORT);
             toast.show();
         }

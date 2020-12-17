@@ -15,12 +15,20 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents the visualization of the user's booked requests, past and present
+ */
 public class VisualizeBookedActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
     private HttpImageRequest hir;
 
+    /**
+     * Initializes VisualizeBookedActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("VBA", "Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visualize_requests_screen);
         tth = new ThreadTaskHandler();
@@ -43,6 +51,7 @@ public class VisualizeBookedActivity extends AppCompatActivity {
     }
 
     public void populateViewBooked(){
+        Log.w("VBA", "Inside populateViewBooked");
         String[] output = tth.getThreadOutput();
         String[] info;
         LinearLayout browse = findViewById(R.id.view_results);

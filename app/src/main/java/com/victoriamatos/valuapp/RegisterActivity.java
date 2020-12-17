@@ -11,16 +11,28 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This class represents the user registering their account
+ */
 public class RegisterActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
+
+    /**
+     * Initializes RegisterActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("Register","Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_screen);
         tth = new ThreadTaskHandler();
     }
 
-    //register account, go to account screen
+    /**
+     * Register the user's account based on the provided info, onClick
+     * @param v, the button pressed
+     */
     public void register(View v){
         Log.w("Register","Inside register");
 
@@ -29,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText ed5 = findViewById(R.id.verify_sitter_password);
 
         if(ed4.getText().toString().equals(ed5.getText().toString())){
-            //get information
+            Log.w("Register","registering the account");
             AccountActivity.user.setPassword(ed4.getText().toString());
             EditText ed1 = findViewById(R.id.sitter_first_name);
             AccountActivity.user.setFirstName(ed1.getText().toString());
@@ -50,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             EditText ed10 = findViewById(R.id.sitter_zip_code);
             AccountActivity.user.setZip(ed10.getText().toString());
 
-            Log.w("RA",AccountActivity.user.toThreadTaskString());
+            Log.w("Register", AccountActivity.user.toThreadTaskString());
 
             //push to database
             tth.postThreadTask(ThreadTaskHandler.URL_POST_REGISTER, AccountActivity.user.toThreadTaskString());
@@ -60,13 +72,14 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             String[] serverOutput = tth.getThreadOutput();
+
             //check if email exists elsewhere
             if(serverOutput != null && serverOutput[0].equals("email")){
-                Log.w("RA","make toast");
+                Log.w("Register","make toast for email in use");
                 Toast toast = Toast.makeText(getApplicationContext(),"Email already in use. Login!", Toast.LENGTH_SHORT);
                 toast.show();
             }else if (serverOutput[0].equals("noGeocode")){
-                Log.w("UA", "make toast");
+                Log.w("Register", "make toast for bad address");
                 Toast toast = Toast.makeText(getApplicationContext(), "Bad address!", Toast.LENGTH_SHORT);
                 toast.show();
             } else{
@@ -83,7 +96,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    //go login, instead of register
+    /**
+     * Goes to the LoginActivity
+     * @param v, of the button pressed
+     */
     public void goLogin(View v){
         Log.w("Register", "Inside  goLogin");
         Intent intent = new Intent(this, LoginActivity.class);

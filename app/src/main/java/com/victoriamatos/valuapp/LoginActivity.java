@@ -17,18 +17,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * This class represents the login screen of the app
+ */
 public class LoginActivity extends AppCompatActivity {
     private ThreadTaskHandler tth;
 
+    /**
+     * Initializes LoginActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("Login","Inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
         tth = new ThreadTaskHandler();
         AccountActivity.user = new User();
     }
 
-    //login, go to the account screen
+    /**
+     * Logs the user into
+     * @param v, the login button pressed
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void login(View v){
         Log.w("Login","Inside login");
@@ -41,21 +52,31 @@ public class LoginActivity extends AppCompatActivity {
         AccountActivity.user = new User(email,password);
         int works = getUserInfo(email, AccountActivity.user.getEncryptedPassword());
         if(works == 1){
-            //go to account screen
+            Log.w("Login", "successful login");
             Intent intent = new Intent(this, AccountActivity.class);
             startActivity(intent);
         }
     }
 
-    //go register, instead of login
+    /**
+     * Goes to RegisterActivity to register an account
+     * @param v, of button pressed
+     */
     public void goRegister(View v){
         Log.w("Login", "Inside  goRegister");
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Gets the user's info based on their email and, if correct, their password
+     * @param email, user's typed in email
+     * @param password, user's typed in password
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int getUserInfo(String email, String password){
+        Log.w("Login","Inside getUserInfo");
         tth.postThreadTask(ThreadTaskHandler.URL_POST_LOGIN, "email=" + email + "&password=" + password);
         try {
             Thread.sleep(1000);
@@ -65,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String[] output = tth.getThreadOutput(); //firstName, lastName, latitude, longitude, points
         if(output.length != 5) {
+            Log.w("Login", "checking if user's email and password are correct");
             Toast toast;
             if(output[0].equals("email"))
                 toast = Toast.makeText(getApplicationContext(), "Email doesn't have account. Sign up!", Toast.LENGTH_SHORT);
@@ -76,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             return 0;
         }
         else{
+            Log.w("Login","setting user's info based on login info");
             AccountActivity.user.setFirstName(output[0]);
             AccountActivity.user.setLastName(output[1]);
             AccountActivity.user.setLatitude(Float.parseFloat(output[2]));
@@ -88,8 +111,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates the user's points based on the completion of booked requests
+     * @param email, the user's email
+     * @return, the number of points user has
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int updatePoints(String email){
+        Log.w("Login", "Inside updatePoints");
         int points = 0;
         tth.postThreadTask(ThreadTaskHandler.URL_POST_POINT_UPDATE, "email=" + email);
         try {
@@ -102,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         if(output != null && output[0].equals("noPastBookings"))
             return 0;
         else{
+            Log.w("Login","Determining points on dates");
             for (int i = 0; i < (output.length - 1); i++) { //year-month-day
                 info = output[i].split("\\|");
                 String[] startDateSplit = info[0].split("-");
